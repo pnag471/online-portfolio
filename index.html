@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prisha Nag • CS & Data Science</title>
+  <meta name="description" content="Third‑year Computer Science & Data Science student — projects in web, data, and ML." />
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Prisha Nag • Portfolio" />
+  <meta property="og:description" content="Computer Science & Data Science projects" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-image.jpg" />
+
+  <style>
+    /* ===== Reset (minimal) ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+    body, h1, h2, h3, p, ul { margin: 0; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== Theme ===== */
+    :root{
+      --bg: #f7f5f2;           /* warm off‑white */
+      --paper: #ffffff;         /* cards */
+      --ink: #101214;           /* primary text */
+      --muted: #5a616a;         /* secondary text */
+      --chip: #f0ebe4;          /* soft beige chip */
+      --accent: #111111;        /* dark button */
+      --radius: 22px;           /* rounded cards */
+      --shadow: 0 10px 30px rgba(16,18,20,.08);
+    }
+
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container{ width: min(1120px, 92vw); margin-inline: auto; }
+
+    /* ===== Nav ===== */
+    header{ position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px); }
+    .nav{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 0; }
+    .brand{ display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.4px; }
+    .badge{ width:12px; height:12px; border-radius:999px; background:#111; }
+    .links a{ padding:8px 12px; color:var(--muted); border-radius:12px; }
+    .links a:hover{ background:#eae6df; color:var(--ink); }
+
+    /* ===== Hero (like the reference mock) ===== */
+    .hero{ padding:72px 0 24px; }
+    .hero-grid{ display:grid; grid-template-columns: 1.2fr .8fr; gap:32px; align-items:center; }
+    .hero h1{ font-size: clamp(40px, 6vw, 72px); line-height: 1.02; font-weight: 900; letter-spacing:-.5px; }
+    .hero .kicker{ color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: .14em; font-size: 12px; }
+    .hero .lede{ color: var(--muted); margin-top: 16px; font-size: clamp(16px, 1.2vw + 10px, 20px); }
+    .cta{ display:flex; flex-wrap:wrap; gap:12px; margin-top: 24px; }
+    .btn{ display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:12px 16px; border-radius:16px; border:1px solid #ded8cf; background: var(--paper); font-weight:700; box-shadow: var(--shadow); }
+    .btn.primary{ background: var(--accent); color:#fff; border-color: #000; }
+    .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 18px; }
+    .chip{ background: var(--chip); border: 1px solid #e4ded4; padding:8px 12px; border-radius:999px; font-size: 13px; color:#2d3136; }
+
+    .portrait{ border-radius: 28px; overflow: hidden; border: 1px solid #e4ded4; box-shadow: var(--shadow); aspect-ratio: 4/5; object-fit: cover; }
+
+    /* ===== Section shells ===== */
+    section{ padding: 36px 0; }
+    h2{ font-size: clamp(26px, 2.2vw + 10px, 36px); margin-bottom: 14px; }
+
+    /* ===== Projects ===== */
+    .project-card {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        }
+
+        .project-img {
+        border-radius: var(--radius);
+        border: 1px solid #e4ded4;
+        box-shadow: var(--shadow);
+        margin-top: 20px; /* Adds spacing between the title and image */
+        margin-bottom: 16px;
+        }
+
+        .project-body {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        }
+
+        .project-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+        }
+
+    .projects{ }
+    .grid{ display:grid; gap:16px; }
+    .grid-3{ grid-template-columns: repeat(3, 1fr); }
+    .card{ background: var(--paper); border:1px solid #e7e1d8; border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+    .p-icon{ width: 56px; height: 56px; border-radius: 16px; background:#efefef; display:grid; place-items:center; margin-bottom: 10px; }
+    .p-title{ margin: 2px 0 6px; font-size: 20px; font-weight: 800; }
+    .p-desc{ color: var(--muted); }
+
+        /* ===== About ===== */
+    /* ===== About (always stacked) ===== */
+    .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;   /* stack */
+    gap: 16px;
+    }
+    .about-grid > * {
+    max-width: 100%;             /* comfortable reading width */
+    margin-inline: auto;          /* center the cards */
+    }
+
+    /* keep your existing card styles */
+    .about .tile {
+    background: #f0ebe4;
+    border: 1px solid #e0d7c9;
+    border-radius: var(--radius);
+    padding: 18px;
+    }
+
+    /* headings + paragraph rhythm */
+    .about-detail .h3 {
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    border-left: 4px solid #111;
+    padding-left: 8px;
+    }
+    .about-grid p { margin: 0 0 1em; color: #2d3136; }
+
+
+
+    /* ===== CTA footer ===== */
+    .cta-rail{ background: #111; color:#fff; border-radius: 22px; padding: 26px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .cta-rail p{ opacity: .9; }
+    .cta-rail .btn{ background:#fff; color:#111; border-color:#fff; box-shadow:none; }
+
+    footer{ color: var(--muted); text-align:center; padding: 28px 0 48px; }
+
+    @media (max-width: 960px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .about-grid{ grid-template-columns: 1fr; }
+      .grid-3{ grid-template-columns: 1fr; }
+    }
+
+
+        /* ===== Contact (Redesigned) ===== */
+    .contact-card{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:32px;
+      padding:32px;
+      background:var(--paper);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      border:1px solid #e7e1d8;
+      align-items:start;
+    }
+    .contact-info h3{ font-size:22px; font-weight:800; margin-bottom:10px; }
+    .contact-info p{ margin:8px 0; color:var(--muted); font-size:15px; }
+    .contact-info a{ text-decoration:underline; text-underline-offset:3px; }
+
+    .contact-form .form-group{ margin-bottom:14px; }
+    .contact-form input,
+    .contact-form textarea{
+      width:100%;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid #ded8cf;
+      background:#fff;
+      font-size:15px;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,.05);
+    }
+    .contact-form textarea{ resize:vertical; }
+
+    .form-actions{ display:flex; gap:12px; margin-top:6px; flex-wrap:wrap; }
+
+    /* Visually hidden but accessible labels */
+    .sr-only{
+      position:absolute !important;
+      height:1px; width:1px;
+      overflow:hidden; clip:rect(1px,1px,1px,1px);
+      white-space:nowrap; border:0; padding:0; margin:-1px;
+    }
+
+    @media (max-width:960px){
+      .contact-card{ grid-template-columns:1fr; }
+    }
+
+    .exp-card{
+      background: var(--paper);
+      border:1px solid #e7e1d8;
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-top: 16px;
+      box-shadow: var(--shadow);
+    }
+    .exp-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:10px; }
+    .exp-head h3{ font-size:18px; font-weight:800; }
+    .exp-head .meta{ color:var(--muted); font-size:14px; }
+    .skills{ display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 14px; }
+    .skills .chip{ background: var(--chip); border:1px solid #ded8cf; padding:6px 10px; border-radius:999px; font-size:12px; }
+    .exp-card ul{ padding-left:20px; display:flex; flex-direction:column; gap:6px; }
+
+  </style>
+
+  
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Prisha Nag",
+    "description":"Third‑year CS & Data Science student building software and ML projects.",
+    "url":"https://YOUR-DOMAIN.com/",
+    "alumniOf": {"@type":"CollegeOrUniversity","name":"Arizona State University"},
+    "sameAs":["https://github.com/YOUR-GH","https://www.linkedin.com/in/YOUR-LI"]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="badge"></span><span>Prisha Nag</span></div>
+      <nav class="links">
+        <a href="#about">About</a>
+        <a href="#work-experience">Work Experience</a> <!-- new -->
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="home">
+      <div class="hero-grid">
+        <div>
+          <div class="kicker">COMPUTER SCIENCE & DATA SCIENCE</div>
+          <h1>Prisha Nag</h1>
+          <p class="lede">"I am Junior at Arizona State University pursuing a B.S. in Computer Science with a minor in Data Science. I’ve earned Dean’s List distinction for my academic performance and have a strong interest in machine learning, artificial intelligence, and software development.
+Beyond the classroom, I’m an active member of the Combat Ready Robotics club, ACM, and Women in Computer Science where I collaborate with peers, learn advanced software engineering concepts, and strengthen my problem-solving skills."
+</p>
+          <div class="cta">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn" href="#contact">Contact Me</a>
+          </div>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">Pandas</span>
+            <span class="chip">PyTorch</span>
+            <span class="chip">SQL</span>
+            <span class="chip">Data Visualization</span>
+            <span class="chip">Product Management</span>
+          <span class="chip">Customer Empathy</span>
+          <span class="chip">Agile Collaboration</span>
+
+          </div>
+        </div>
+        <div>
+          <!-- Replace src with your portrait path -->
+          <img class="portrait" src="/prisha.png" alt="Portrait of Prisha"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <!-- ===== About ===== -->
+<section id="about" class="about">
+  <h2>About Me</h2>
+
+  <div class="about-grid">
+    <!-- Left Card: Intro -->
+    <article class="card about-bio">
+      <p>
+        My name is Prisha Nag and I am a Junior at Arizona State University, majoring in Computer Science and minoring in Data Science. 
+        As a third-year student, my goal is to continue investing in my growth and building expertise in technology and software. 
+        I’m committed to expanding my skills and passion for coding through active involvement in campus clubs and organizations. 
+        In the future, I aspire to own my own company, whether in the fitness or fashion, where I can leverage my background in software as a powerful tool for innovation and success.
+      </p>
+    </article>
+
+    <!-- Right Card: Experience + Interests -->
+    <aside class="tile about-detail">
+      <aside class="tile about-detail">
+  <h3 class="h3">Professional Experience</h3>
+  <p>
+    I am a fast learner with strong <strong>technical</strong> and <strong>communication skills</strong>. 
+    I have been working part time as a <strong>software developer</strong> for <strong>PrintPapa</strong>, 
+    where I developed a <strong>database</strong> to track company assets and explored 
+    <strong>AI technologies</strong>, including building <strong>large language models (LLMs)</strong> 
+    and working with frameworks such as <strong>Pandas</strong>, <strong>PyODBC</strong>, and <strong>PyTorch</strong>. 
+  </p>
+  <p>
+    In addition to my technical work, I honed my professional <strong>communication skills</strong> 
+    by creating detailed <strong>daily progress reports</strong> and meeting with my manager to discuss 
+    <strong>updates</strong>, <strong>challenges</strong>, and <strong>next steps</strong>. 
+    This experience strengthened both my <strong>problem-solving abilities</strong> and my capacity 
+    to <strong>collaborate effectively</strong> in a professional environment.
+  </p>
+  <p>
+    Prior to my software position, I worked in <strong>PrintPapa’s warehouse</strong> as an intern, 
+    where I <strong>operated heavy machinery</strong>, managed <strong>production workflows</strong>, 
+    and adapted quickly to new procedures. My performance earned me a <strong>promotion</strong> from 
+    warehouse intern to software intern, a transition that reflected both my <strong>technical potential</strong> 
+    and my <strong>drive to learn</strong> at a higher level. Since then, I have been working as a 
+    <strong>software developer for over a year</strong>, gaining hands-on experience with 
+    <strong>databases</strong>, <strong>automation</strong>, and <strong>AI-driven solutions</strong> 
+    to contribute to the company’s technology initiatives.
+  </p>
+
+  <h3 class="h3">Leadership & Discipline</h3>
+  <p>
+    One of my strongest skills is <strong>planning</strong> and <strong>organization</strong>, 
+    which connects to my <strong>discipline</strong> outside of work. I have been 
+    <strong>weightlifting</strong> for four years, never miss a day at the gym, and also play 
+    <strong>tennis</strong>, <strong>swim</strong>, and practice <strong>yoga</strong> classes.
+  </p>
+  <p>
+    My knowledge of <strong>nutrition</strong> and commitment to <strong>fitness</strong> have 
+    allowed me to inspire others to pursue healthier lifestyles. This same discipline was key when I 
+    served as a <strong>director</strong> and <strong>choreographer</strong> for a small dance 
+    production for the <strong>North American Bengali Conference</strong>, teaching nearly 50 
+    participants ranging from teenagers to adults. With many living hours apart, I created a system 
+    to assign choreography remotely, track progress online, and coordinate rehearsals through 
+    <strong>Google Calendar</strong> to achieve a smooth, successful performance.
+  </p>
+
+  <h3 class="h3">Robotics & Teaching</h3>
+  <p>
+    In high school, I was part of the <strong>Gael Force Robotics</strong> club on the 5327U team, 
+    where I built a <strong>VEX robot</strong> with my teammates for the 2021 Change-Up challenge. 
+    Later, I <strong>coached middle-school students</strong> in <strong>Python</strong> and edited 
+    instructional coding videos for <strong>YCW</strong>. These experiences led to a position at 
+    <strong>Dublin Robotics</strong>, where I rose to <strong>lead coach</strong> and mentored middle 
+    school robotics teams that went on to win <strong>state championships</strong> in VEX Robotics. 
+  </p>
+  <p>
+    Through this, I discovered my passion for <strong>teaching</strong>. I felt true satisfaction 
+    when I saw students’ minds “click” as I explained complex ideas.
+  </p>
+
+  <h3 class="h3">Other Interests</h3>
+  <p>
+    Outside of academics and work, I am a <strong>Level 10 Certificate of Merit Pianist</strong>, 
+    play <strong>tennis</strong>, and enjoy <strong>photography</strong>. Another passion of mine is 
+    <strong>fitness</strong>: I go to the gym daily, run, and swim. I am also working on an 
+    <strong>app</strong> that helps users create daily <strong>nutrition plans</strong> based on their 
+    goals, alongside a <strong>personal website</strong> where I share healthy meals and my exercise routine.
+  </p>
+</aside>
+</section>
+
+<section id="work-experience" class="experience">
+  <h2>Work Experience</h2>
+
+  <!-- Resume Link -->
+  <div class="resume-card">
+    <p><strong>Link to my full Resume!</strong></p>
+    <a class="btn primary" href="https://docs.google.com/document/d/1dBQwOpaul3Aj__NjbibKKiZOjpz0r90N/edit?usp=sharing" target="_blank" rel="noopener">View Resume</a>
+  </div>
+
+  <!-- Software Intern -->
+  <article class="exp-card">
+    <header class="exp-head">
+      <h3>Software Intern — PrintPapa</h3>
+      <span class="meta">Summer 2024 - Ongoing</span>
+    </header>
+    <div class="skills">
+      <span class="chip">Python</span><span class="chip">Pandas</span>
+      <span class="chip">PyTorch</span><span class="chip">SQL Server</span>
+      <span class="chip">Flask</span>
+    </div>
+    <ul>
+      <li>Developed an <strong>asset-tracking database</strong> and internal tools to improve equipment visibility.</li>
+      <li>Explored <strong>AI/LLM workflows</strong> (Hugging Face, vector search) and prototyped automation features.</li>
+      <li>Created detailed <strong>daily progress reports</strong> and partnered with my manager on priorities and next steps.</li>
+    </ul>
+  </article>
+
+  <!-- Operations Intern -->
+  <article class="exp-card">
+    <header class="exp-head">
+      <h3>Operations Intern — PrintPapa</h3>
+      <span class="meta">Summer 2023</span>
+    </header>
+    <div class="skills">
+      <span class="chip">Production Ops</span>
+      <span class="chip">Safety</span>
+      <span class="chip">Quality Control</span>
+    </div>
+    <ul>
+      <li>Operated <strong>Aerocut & Horizon Folding Machines</strong> to cut and fold business cards, flyers, and brochures, improving process efficiency under tight deadlines.</li>
+      <li>Worked cross-functionally with production and management to identify workflow optimizations—mirroring cross-team <strong>PM collaboration</strong>.</li>
+      <li>Recognized for <strong>initiative</strong>; streamlined tasks and supported teammates.</li>
+      <li>Performance earned a <strong>promotion to Software Intern</strong>.</li>
+    </ul>
+  </article>
+
+  <!-- Robotics Coach -->
+  <article class="exp-card">
+    <header class="exp-head">
+      <h3>Robotics Coach — Dublin Robotics</h3>
+      <span class="meta">Summer 2021 - Summer 2023</span>
+    </header>
+    <div class="skills">
+      <span class="chip">Coaching</span>
+      <span class="chip">Python</span>
+      <span class="chip">HTML</span>
+      <span class="chip">Java</span>
+      <span class="chip">Curriculum Development</span>
+    </div>
+    <ul>
+      <li>Coached <strong>VEX IQ competition teams</strong> that qualified for national championships.</li>
+      <li>Led <strong>Python, HTML, and Java workshops</strong> for students aged 8–12.</li>
+      <li>Demonstrated leadership and curriculum development—translating complex technical concepts for new learners.</li>
+    </ul>
+  </article>
+
+</section>
+
+
+
+    <!-- ===== Projects ===== -->
+    <section id="projects" class="projects">
+      <h2>Projects</h2>
+      <div class="grid grid-3">
+        <article class="card">
+          <h3 class="p-title">PrintPapa AI-powered KPI Dashboard</h3>
+          <p class="meta">7/30/2025 • Internship Project</p>
+          <img src="/printpapadashboard.png" alt="PhishShield project screenshot" class="project-img" />
+          <p>    </p>
+            <p class="p-desc"></p>
+              I led the design and deployment of a <strong>KPI dashboard</strong> that gave leadership 
+              <strong>real-time visibility</strong> into performance metrics. I translated <strong>business requirements</strong> into 
+              <strong>technical solutions</strong> by building <strong>pipelines</strong> in <strong>Python</strong>, <strong>Pandas</strong>, 
+              and <strong>SQL Server</strong>, and then visualized insights in an interactive dashboard.
+            </p>
+
+              To take the system further, I integrated <strong>machine learning workflows</strong>, fine-tuning 
+              <strong>large language models (LLMs)</strong> and applying <strong>vector search</strong> to deliver 
+              <strong>AI-powered recommendations</strong> for intelligent sales tracking and forecasting.
+            </p>
+
+              This project required me to merge technical fluency in <strong>data engineering</strong> and 
+              <strong>machine learning</strong> with <strong>stakeholder collaboration</strong>, ultimately creating a tool 
+              that drove <strong>faster, data-driven decisions</strong>.
+            </p>
+          
+            <div class="project-links">
+              <a href="https://youtu.be/ywJ5wqFt6d4" target="_blank" class="btn">Video Demo</a>
+            </div>
+                    
+        </article>
+        <article class="card">
+          <h3 class="p-title">SQL Asset Categorization System</h3>
+            <p class="meta">7/30/2024 • Internship Project</p>
+            <img src="/asset.png" alt="PhishShield project screenshot" class="project-img" />
+            <p class="p-desc"><p>
+              I engineered a <strong>SQL-based asset categorization and reporting system</strong> that organized hundreds of company assets into clear, queryable categories. 
+              I designed <strong>database schemas</strong>, implemented <strong>efficient queries</strong>, and built <strong>automation scripts</strong> to reduce hours of manual tracking into real-time insights.
+            </p>
+              By partnering with <strong>business and operations leads</strong>, I ensured the database not only reflected internal processes but also supported <strong>cross-functional reporting</strong> and <strong>product lifecycle management</strong>. 
+              This system became a backbone for accurate performance monitoring and highlighted my ability to apply <strong>database design</strong>, <strong>SQL optimization</strong>, and <strong>backend problem-solving</strong> to solve real-world business challenges.
+            </p>
+        </article>
+        <article class="card">
+          <h3 class="p-title">AI Fitness & Nutrition tracking App</h3>
+            <p class="meta">5/30/2025 • Personal Project</p>
+            <img src="/fitness.png" alt="PhishShield project screenshot" class="project-img" />
+            <p class="p-desc"><p>
+              My passion for fitness has been a driving force in both my personal life and technical work. 
+              After years of self-learning about nutrition, weightlifting, and healthy lifestyle habits, 
+              I became frustrated with the limitations of popular fitness apps. Many had 
+              <strong>confusing user interfaces</strong>, lacked <strong>accurate nutritional information</strong> 
+              for beginners, or made tracking food and workouts unnecessarily complicated.
+            </p>
+            <p>
+              To address these gaps, I designed and built a fitness app that combined my knowledge of 
+              <strong>health and nutrition</strong> with my skills in <strong>data engineering and AI</strong>. 
+              On the backend, I created a structured <strong>SQL database</strong> to log calories, macronutrients, 
+              and workouts, ensuring users could track progress with clarity. To make food tracking seamless, 
+              I integrated a <strong>computer vision model</strong> that allowed users to snap a picture of their meal 
+              and instantly receive estimated nutritional breakdowns.
+            </p>
+            <p>
+              This project not only let me apply <strong>Python, SQL, and PyTorch</strong> in a real-world product, 
+              but also reflected my belief that technology should empower people—especially newcomers—to build 
+              healthier habits without confusion. By combining my personal dedication to fitness with technical 
+              expertise, I built a tool that is as much about <strong>usability and accessibility</strong> as it is 
+              about advanced AI.
+            </p>
+        </article>
+        <article class="card project-card">
+            <div class="project-body">
+                <h3 class="p-title">PhishShield</h3>
+                <p class="meta">3/30/2025 • Personal Project</p>
+                <img src="/phishShield.png" alt="PhishShield project screenshot" class="project-img" />
+                <p class="p-desc">
+                Chrome extension designed to detect phishing websites and protect users from potential threats. 
+                Uses regex patterns and the Google Safe Browsing API to identify suspicious URLs in real time.
+                Provides password/HTTPS security guidelines and allows users to report suspicious sites directly.
+                </p>
+
+                <div class="project-links">
+                <a href="https://youtu.be/ZQKrgGjVbS4" target="_blank" class="btn"> Video Demo</a>
+                <a href="https://github.com/pnag471/PhishShield.git" target="_blank" class="btn primary">GitHub Repo</a>
+                </div>
+            </div>
+            </article>
+
+        <article class="card project-card">
+        <div class="project-body">
+            <h3 class="p-title">VEX Robotics 5327D Competition Robot</h3>
+            <p class="meta">4/12/2022 • Gael Force Robotics Club</p>
+            <div class="project-img">
+            <img src="robots.png" alt="VEX Robotics 5327D Robot" />
+            </div>
+            <p class="p-desc">
+            This is the robot my competition team and I built and designed to compete in the 2022 VEX Robotics competition. We utilized a tank drive over an x drive due to its consistency and to optimize turning. We also decided to use a more defensive strategy for gameplay, so the tank drive proved to be more stable. However, the most noticeable quality are the air tanks. We used air tanks and pneumatic tubes to securely lift mogos and balls. This method allowed us to consistently score points.
+            </p>
+            <p class="p-desc">
+            I learned many skills by being on team 5327D, such as reliability, innovative thinking, and leadership. I enjoyed my experience on this team and we all bonded as a team, allowing for us to go through wins and losses with a strong morale.
+            </p>
+        </div>
+        </article>
+        <article class="card project-card">
+          <div class="project-body">
+            <h3 class="p-title">Data Quality Automation Toolkit (DQAT)</h3>
+            <p class="meta">10/05/2025 • Portfolio Project</p>
+            <img src="/dqat.png" alt="Data Quality Automation Toolkit screenshot" class="project-img" />
+            <p class="p-desc">
+              A full-stack data quality and anomaly detection platform built with 
+              <strong>FastAPI</strong>, <strong>PostgreSQL</strong>, and <strong>React</strong>. 
+              The system automatically cleans and normalizes messy datasets, matches schemas across sources, 
+              and detects anomalies using statistical and machine learning methods. 
+              Inspired by my work at <strong>PrintPapa</strong>, it validates data integrity 
+              with <strong>Great Expectations</strong> and exposes results through a REST API and dashboard.
+            </p>
+
+            <div class="project-links">
+              <a href="https://github.com/pnag471/dqat-printpapa" target="_blank" class="btn primary">GitHub Repo</a>
+            </div>
+          </div>
+        </article>
+
+
+
+      </div>
+    </section>
+
+
+
+
+    <!-- ===== Contact (Redesigned, mailto version) ===== -->
+<section id="contact" class="contact">
+  <div class="contact-card">
+    <!-- Left Column: Info -->
+    <div class="contact-info">
+      <h3>Let’s Connect</h3>
+      <p><strong>📧 Email:</strong> <a href="mailto:prisha.r.nag@gmail.com">prisha.r.nag@gmail.com</a></p>
+      <p><strong>✆ Phone:</strong> <a href="tel:+14089816677">(408) 981-6677</a></p>
+      <p><strong>🔗 LinkedIn:</strong> <a href="https://www.linkedin.com/in/prisha-nag-922bba183/" target="_blank" rel="noopener">View Profile</a></p>
+    </div>
+
+</section>
+
+
+
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Prisha Nag</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
+
