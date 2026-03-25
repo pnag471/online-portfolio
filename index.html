@@ -211,6 +211,94 @@
     .skills .chip{ background: var(--chip); border:1px solid #ded8cf; padding:6px 10px; border-radius:999px; font-size:12px; }
     .exp-card ul{ padding-left:20px; display:flex; flex-direction:column; gap:6px; }
 
+    /* ===== Hackathon Winner Card ===== */
+    .hackathon-card {
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 60%, #16213e 100%);
+      border: 1px solid #333;
+      border-radius: var(--radius);
+      padding: 28px 28px 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .hackathon-card::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(255,215,0,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hackathon-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,215,0,0.15);
+      border: 1px solid rgba(255,215,0,0.4);
+      color: #ffd700;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    .hackathon-card h3 {
+      font-size: 22px;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .hackathon-meta {
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+    .hackathon-desc {
+      color: rgba(255,255,255,0.78);
+      font-size: 15px;
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .hackathon-team {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .hackathon-team .chip {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.85);
+      font-size: 12px;
+    }
+    .hackathon-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .hackathon-links .btn {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border-color: rgba(255,255,255,0.2);
+      box-shadow: none;
+      font-size: 14px;
+    }
+    .hackathon-links .btn:hover {
+      background: rgba(255,255,255,0.18);
+    }
+    .hackathon-links .btn.gold {
+      background: #ffd700;
+      color: #111;
+      border-color: #ffd700;
+    }
+    .hackathon-links .btn.gold:hover {
+      background: #f0c800;
+    }
+
   </style>
 
   
@@ -253,6 +341,7 @@
           <div class="cta">
             <a class="btn primary" href="#projects">View Projects</a>
             <a class="btn" href="#contact">Contact Me</a>
+            <a class="btn" href="https://drive.google.com/file/d/1aAx9Rn7mEv5p4zWDcHp80YZFgoxmC-zT/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
           </div>
           <div class="chips">
             <span class="chip">Python</span>
@@ -366,7 +455,7 @@
   <!-- Resume Link -->
   <div class="resume-card">
     <p><strong>Link to my full Resume!</strong></p>
-    <a class="btn primary" href="https://drive.google.com/file/d/1pMO-DwSRS7s1H1KrA-LAifq8HxBNVa-J/view?usp=sharing" target="_blank" rel="noopener">View Resume</a>
+    <a class="btn primary" href="https://drive.google.com/file/d/1aAx9Rn7mEv5p4zWDcHp80YZFgoxmC-zT/view?usp=sharing" target="_blank" rel="noopener">View Resume</a>
   </div>
 
   <!-- Junior Software Developer -->
@@ -452,6 +541,29 @@
     <!-- ===== Projects ===== -->
     <section id="projects" class="projects">
       <h2>Projects</h2>
+
+      <!-- Hackathon Winner Card -->
+      <div class="hackathon-card">
+        <div class="hackathon-badge">🏆 1st Place — AI Tooling Track</div>
+        <h3>SentinelEdge</h3>
+        <p class="hackathon-meta">March 2026 &nbsp;·&nbsp; Claude Builder Club Hackathon @ ASU</p>
+        <p class="hackathon-desc">
+          Built in a single day with my team, SentinelEdge is a privacy-first, on-device scam detection system for live phone calls.
+          A compressed, fine-tuned small language model runs entirely on the user's phone — real-time transcript analysis, 
+          federated learning updates, and zero data ever leaving the device. No cloud, no surveillance, no tradeoffs.
+          The inspiration: the people most vulnerable to scams are least equipped with technical defenses. We wanted to change that.
+        </p>
+        <div class="hackathon-team">
+          <span class="chip">👤 Prisha Nag</span>
+          <span class="chip">👤 Shiven Agarwal</span>
+          <span class="chip">👤 Ishita Sharma</span>
+        </div>
+        <div class="hackathon-links">
+          <a href="https://youtu.be/TbUMw-mnLhI" target="_blank" rel="noopener" class="btn gold">▶ Video Demo</a>
+          <a href="https://github.com/ShivenA99/SentinelEdge" target="_blank" rel="noopener" class="btn">GitHub Repo</a>
+        </div>
+      </div>
+
       <div class="grid grid-3">
         <article class="card">
           <h3 class="p-title">PrintPapa AI-powered KPI Dashboard</h3>
@@ -586,7 +698,7 @@
     <!-- Left Column: Info -->
     <div class="contact-info">
       <h3>Let’s Connect</h3>
-      <p><strong>📧 Email:</strong> <a href="mailto:prisha.r.nag@gmail.com">prisha.r.nag@gmail.com</a></p>
+      <p><strong>📧 Email:</strong> <a href="/cdn-cgi/l/email-protection#f0808299839891de82de9e9197b0979d91999cde939f9d"><span class="__cf_email__" data-cfemail="7707051e041f1659055919161037101a161e1b5914181a">[email&#160;protected]</span></a></p>
       <p><strong>✆ Phone:</strong> <a href="tel:+14089816677">(408) 981-6677</a></p>
       <p><strong>🔗 LinkedIn:</strong> <a href="https://www.linkedin.com/in/prisha-nag-922bba183/" target="_blank" rel="noopener">View Profile</a></p>
     </div>
@@ -598,13 +710,4 @@
   </main>
 
   <footer>
-    <div class="container">© <span id="year"></span> Prisha Nag</div>
-  </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
-
-
+    <div class="container">© <span id="year"></span> Prisha
